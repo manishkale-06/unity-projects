@@ -78,7 +78,9 @@
     <Compile Include="Assets\SharedAssets\FirstPersonController\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\SharedAssets\Benchmark\PerformanceTestUtilities.cs" />
     <Compile Include="Assets\SharedAssets\FirstPersonController\InputSystem\FirstPersonInputs.cs" />
+    <Compile Include="Assets\Scripts\SetTurn.cs" />
     <Compile Include="Assets\SharedAssets\Scripts\Runtime\FullscreenEffect.cs" />
+    <Compile Include="Assets\Scripts\GameMenuManger.cs" />
     <Compile Include="Assets\SharedAssets\FirstPersonController\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\SharedAssets\Scripts\Runtime\FullscreenTransition.cs" />
     <Compile Include="Assets\SharedAssets\Scripts\Runtime\DeviceTypeUI.cs" />
