@@ -2,20 +2,36 @@ using UnityEngine;
 
 public class InstantiateArrow : MonoBehaviour
 {
-    public GameObject arrow;
+    public Transform arrow;      
     public Transform shootPoint;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public float pullSpeed = 2f;
+    public float maxPull = 1f;
+
+    private Vector3 startPos;
+    private float pullAmount = 0f;
+
     void Start()
     {
-        
+        startPos = arrow.localPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Mouse0))
-    {
-        Instantiate(arrow, shootPoint.position, shootPoint.rotation);
-    }
+       
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            pullAmount += pullSpeed * Time.deltaTime;
+            pullAmount = Mathf.Clamp(pullAmount, 0f, maxPull);
+
+            arrow.localPosition = startPos - new Vector3(0, pullAmount, 0);
+        }
+
+       
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            arrow.localPosition = startPos;
+            pullAmount = 0f;
+        }
     }
 }
