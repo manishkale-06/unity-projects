@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\InstantiateArrow.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\TargetHit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
