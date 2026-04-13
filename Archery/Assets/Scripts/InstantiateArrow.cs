@@ -3,8 +3,10 @@ using UnityEngine;
 public class InstantiateArrow : MonoBehaviour
 {
     public GameObject arrowPrefab;   
+    public Animator bowAnimator;
     public Transform shootPoint;
-    public Transform bowString;     
+    public Transform bowString; 
+    public Transform playerCamera;    
 
     public float pullSpeed = 2f;
     public float maxPull = 1f;
@@ -28,20 +30,23 @@ public class InstantiateArrow : MonoBehaviour
             pullAmount = Mathf.Clamp(pullAmount, 0f, maxPull);
 
             bowString.localPosition = startPos - new Vector3(0, pullAmount, 0);
+            
+            bowAnimator.SetFloat("Pull", pullAmount);
         }
 
         
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            GameObject newArrow = Instantiate(arrowPrefab, shootPoint.position, shootPoint.rotation);
+            GameObject newArrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(playerCamera.forward)* Quaternion.Euler(90f, 0f, 0f));
 
             Rigidbody rb = newArrow.GetComponent<Rigidbody>();
-            rb.AddForce(shootPoint.up * pullAmount * shootForce, ForceMode.Impulse);
+            rb.AddForce(playerCamera.forward * pullAmount * shootForce, ForceMode.Impulse);
             rb.AddTorque(newArrow.transform.up * torque);
 
             
             bowString.localPosition = startPos;
             pullAmount = 0f;
+            bowAnimator.SetFloat("Pull", 0f);
         }
     }
 }
