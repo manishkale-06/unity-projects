@@ -9,16 +9,20 @@ public class ScreenNaviagation : MonoBehaviour
 
     public Transform playerCamera;
     public Transform bow; 
+    public StartGame startScript; 
 
     void Start()
     {
         playerCamera = Camera.main.transform; 
-        Cursor.lockState = CursorLockMode.Locked;
+        startScript = GameObject.Find("GameManager").GetComponent<StartGame>();
     }
 
     void Update()
     {
-        LookAround();
+        if (startScript.hasStarted)
+        {
+            LookAround();
+        }
     }
 
     void LookAround()

@@ -6,7 +6,8 @@ public class InstantiateArrow : MonoBehaviour
     public Animator bowAnimator;
     public Transform shootPoint;
     public Transform bowString; 
-    public Transform playerCamera;    
+    public Transform playerCamera; 
+    public StartGame startScript;   
 
     public float pullSpeed = 2f;
     public float maxPull = 1f;
@@ -19,12 +20,13 @@ public class InstantiateArrow : MonoBehaviour
     void Start()
     {
         startPos = bowString.localPosition;
+        startScript = GameObject.Find("GameManager").GetComponent<StartGame>();
     }
 
     void Update()
     {
         
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse1) && startScript.hasStarted)
         {
             pullAmount += pullSpeed * Time.deltaTime;
             pullAmount = Mathf.Clamp(pullAmount, 0f, maxPull);
@@ -35,7 +37,7 @@ public class InstantiateArrow : MonoBehaviour
         }
 
         
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse1) && startScript.hasStarted)
         {
             GameObject newArrow = Instantiate(arrowPrefab, shootPoint.position, Quaternion.LookRotation(playerCamera.forward)* Quaternion.Euler(90f, 0f, 0f));
 

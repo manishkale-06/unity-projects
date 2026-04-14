@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Target Stomach
   - Target Head
+  - Arrow
+  - Body
+  - Head
+  - Shield
   layers:
   - Default
   - TransparentFX
